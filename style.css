@@ -1,26 +1,129 @@
-:root { --red: #d90429; --dark: #2b2d42; --grey: #8d99ae; --bg: #edf2f4; }
-body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; overflow: hidden; }
-.container { display: grid; grid-template-columns: 1fr 400px; height: 100vh; }
+:root {
+--red: #d90429;
+--dark: #2b2d42;
+--grey: #8d99ae;
+--bg: #f8f9fa;
+}
 
-/* Menu Area */
-.menu-section { padding: 30px; overflow-y: auto; }
-.categories button { padding: 12px 24px; margin-right: 10px; border: none; border-radius: 25px; cursor: pointer; background: white; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-.menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; margin-top: 25px; }
-.menu-card { background: white; padding: 20px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.2s; border: 1px solid #eee; }
-.menu-card:hover { transform: scale(1.03); border-color: var(--red); }
+body {
+font-family: 'Segoe UI', system-ui, sans-serif;
+background: var(--bg);
+margin: 0;
+display: flex;
+flex-direction: column;
+height: 100vh;
+}
 
-/* Sidebar Area */
-.order-section { background: var(--dark); color: white; padding: 25px; display: flex; flex-direction: column; }
-.cart-scroll { flex-grow: 1; overflow-y: auto; margin: 20px 0; border-top: 1px solid #444; }
-.cart-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #3d405b; }
+/* Layout Container */
+.container {
+display: flex;
+flex-direction: row; /* Default side-by-side */
+height: 100vh;
+width: 100%;
+}
 
-/* Buttons */
-button { width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-.btn-checkout { background: var(--red); color: white; font-size: 1.1em; }
-.btn-print { background: var(--grey); color: white; }
-.btn-close { background: transparent; color: var(--grey); border: 1px solid var(--grey); font-size: 0.8em; }
+/* Menu Section */
+.menu-section {
+flex: 1;
+padding: 20px;
+overflow-y: auto;
+background: white;
+}
 
+.header h1 { font-size: 1.5rem; margin-bottom: 15px; color: var(--dark); }
+
+.categories {
+display: flex;
+gap: 10px;
+margin-bottom: 20px;
+position: sticky;
+top: 0;
+background: white;
+padding: 10px 0;
+z-index: 10;
+}
+
+.categories button {
+flex: 1;
+padding: 15px;
+border: 2px solid #eee;
+border-radius: 12px;
+background: white;
+font-weight: bold;
+cursor: pointer;
+}
+
+.categories button:active { background: var(--bg); }
+
+/* Menu Grid - Adaptive columns */
+.menu-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+gap: 12px;
+}
+
+.menu-card {
+background: white;
+padding: 15px;
+border-radius: 12px;
+text-align: center;
+box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+border: 1px solid #eee;
+}
+
+/* Order Sidebar */
+.order-section {
+width: 380px;
+background: var(--dark);
+color: white;
+padding: 20px;
+display: flex;
+flex-direction: column;
+box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+}
+
+.cart-scroll {
+flex: 1;
+overflow-y: auto;
+margin: 15px 0;
+}
+
+.cart-item {
+display: flex;
+justify-content: space-between;
+padding: 12px 0;
+border-bottom: 1px solid #3d405b;
+}
+
+/* Responsive Rules for Mobile Phones */
+@media (max-width: 768px) {
+.container {
+flex-direction: column; /* Stack vertically on mobile */
+}
+
+.order-section {
+width: 100%;
+height: 50vh; /* Takes half screen on mobile */
+border-radius: 20px 20px 0 0;
+}
+
+.menu-section {
+height: 50vh;
+}
+
+.menu-grid {
+grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+}
+
+/* Specific button styles */
+button { border: none; cursor: pointer; transition: 0.2s; }
+.btn-checkout { background: var(--red); color: white; padding: 18px; font-size: 1.1rem; border-radius: 12px; margin-top: 10px; }
+.btn-print { background: var(--grey); color: white; padding: 12px; border-radius: 8px; }
+.btn-close { background: transparent; color: #555; font-size: 0.7rem; margin-top: 15px; }
+
+/* Print Mode */
 @media print {
-    .menu-section, .order-controls, button { display: none !important; }
-    .order-section { background: white; color: black; width: 100%; position: absolute; top: 0; }
+.menu-section, .order-controls, .btn-checkout, .btn-close { display: none !important; }
+.order-section { background: white; color: black; position: absolute; top: 0; width: 100%; }
 }
