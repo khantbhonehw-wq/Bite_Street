@@ -9,10 +9,12 @@
 <body>
     <div class="container">
         <section class="menu-section">
-            <h2>Menu</h2>
-            <div class="categories">
-                <button onclick="filterMenu('chicken')">Fried Chicken</button>
-                <button onclick="filterMenu('coffee')">Coffee</button>
+            <div class="header">
+                <h1>Cluck & Caffeine</h1>
+                <div class="categories">
+                    <button onclick="filterMenu('chicken')">🍗 Fried Chicken</button>
+                    <button onclick="filterMenu('coffee')">☕ Coffee</button>
+                </div>
             </div>
             <div id="menu-grid" class="menu-grid"></div>
         </section>
@@ -24,17 +26,17 @@
                     <option value="Takeaway">Takeaway</option>
                     <option value="Dine-in">Dine-in</option>
                 </select>
-                <input type="number" id="table-number" placeholder="Table #" style="display:none;">
+                <input type="number" id="table-number" placeholder="Table Number" style="display:none;">
             </div>
 
-            <div id="cart-items"></div>
+            <div id="cart-items" class="cart-scroll"></div>
 
             <div class="totals">
-                <p>Total: $<span id="total-price">0.00</span></p>
-                <button class="btn-print" onclick="printReceipt()">Print Receipt</button>
-                <button class="btn-checkout" onclick="submitOrder()">Submit to Sheets</button>
+                <div class="total-row"><span>Total:</span><span>$<span id="total-price">0.00</span></span></div>
+                <button class="btn-print" onclick="window.print()">Print Receipt</button>
+                <button class="btn-checkout" onclick="submitOrder()">Complete Sale</button>
+                <button class="btn-close" onclick="closeDay()">Close Day Report</button>
             </div>
-			<button class="btn-close-day" onclick="closeDay()">Close Day & Email Report</button>
         </section>
     </div>
     <script src="script.js"></script>
