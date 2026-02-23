@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cluck & Caffeine POS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <section class="menu-section">
+            <h2>Menu</h2>
+            <div class="categories">
+                <button onclick="filterMenu('chicken')">Fried Chicken</button>
+                <button onclick="filterMenu('coffee')">Coffee</button>
+            </div>
+            <div id="menu-grid" class="menu-grid"></div>
+        </section>
+
+        <section class="order-section">
+            <h2>Current Order</h2>
+            <div class="order-controls">
+                <select id="order-type" onchange="toggleTableInput()">
+                    <option value="Takeaway">Takeaway</option>
+                    <option value="Dine-in">Dine-in</option>
+                </select>
+                <input type="number" id="table-number" placeholder="Table #" style="display:none;">
+            </div>
+
+            <div id="cart-items"></div>
+
+            <div class="totals">
+                <p>Total: $<span id="total-price">0.00</span></p>
+                <button class="btn-print" onclick="printReceipt()">Print Receipt</button>
+                <button class="btn-checkout" onclick="submitOrder()">Submit to Sheets</button>
+            </div>
+			<button class="btn-close-day" onclick="closeDay()">Close Day & Email Report</button>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
